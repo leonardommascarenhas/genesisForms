@@ -27,10 +27,9 @@ export async function sendToWebhook(
       resultado: result === "qualified" ? "qualificado" : "desqualificado",
       nome: answers.name,
       whatsapp: normalizePhone(answers.phone),
-      trafego_pago: answers.traffic,
-      processo_leads: answers.process,
-      faturamento: answers.revenue,
-      compromisso_investimento: answers.commitment,
+      perfil: answers.profile,
+      objetivo: answers.goal,
+      situacao: answers.situation,
       timestamp: new Date().toISOString(),
     }),
   });
