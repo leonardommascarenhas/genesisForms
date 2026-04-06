@@ -42,7 +42,11 @@ export default function QuizFlow() {
   return (
     <div className="h-dvh flex flex-col items-center justify-center px-4">
       <div className={wrapperClass}>
-        <img src="/logo.png" alt="Genesis Logo" className="h-36 w-auto object-contain" />
+        <img
+          src="/logo.png"
+          alt="Genesis Logo"
+          className="h-24 md:h-36 w-auto object-contain"
+        />
 
         {screen === "screen-home" && <HomeScreen onStart={startQuiz} />}
 

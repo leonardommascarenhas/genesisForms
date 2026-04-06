@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
 
         {/* Main content */}
-        <main id="app-container" className="min-h-screen">
+        <main id="app-container" className="h-dvh">
           {children}
         </main>
       </body>
