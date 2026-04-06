@@ -4,16 +4,15 @@ import { useQuizFlow } from "./quiz/useQuizFlow";
 import { HomeScreen } from "./quiz/steps/HomeScreen";
 import { TextInputStep } from "./quiz/steps/TextInputStep";
 import { OptionStep } from "./quiz/steps/OptionStep";
-import { AuthorityStep } from "./quiz/steps/AuthorityStep";
 import { ResultQualified } from "./quiz/steps/ResultQualified";
 import { ResultDisqualified } from "./quiz/steps/ResultDisqualified";
 import type { Step } from "@/types";
 
 const TEXT_STEPS: Step[] = ["quiz-step-1", "quiz-step-2"];
-const OPTION_STEPS: Step[] = ["quiz-step-3", "quiz-step-4", "quiz-step-5", "quiz-step-6"];
+const OPTION_STEPS: Step[] = ["quiz-step-3", "quiz-step-4", "quiz-step-5"];
 
 type TextStep = "quiz-step-1" | "quiz-step-2";
-type OptionStep = "quiz-step-3" | "quiz-step-4" | "quiz-step-5" | "quiz-step-6";
+type OptionStep = "quiz-step-3" | "quiz-step-4" | "quiz-step-5";
 
 export default function QuizFlow() {
   const {
@@ -43,11 +42,7 @@ export default function QuizFlow() {
   return (
     <div className="h-dvh flex flex-col items-center justify-center px-4">
       <div className={wrapperClass}>
-        <img
-          src="/logo.png"
-          alt="DigiGrowth Logo"
-          className="h-8 md:h-10 w-auto object-contain mb-6 md:mb-10"
-        />
+        <img src="/logo.png" alt="Genesis Logo" className="h-36 w-auto object-contain" />
 
         {screen === "screen-home" && <HomeScreen onStart={startQuiz} />}
 

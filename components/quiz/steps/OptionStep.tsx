@@ -1,7 +1,7 @@
 import { STEP_QUESTIONS, STEP_OPTIONS, TOTAL_STEPS, STEP_DISPLAY_NUMBER } from "@/types";
 import type { Answers } from "@/types";
 
-type OptionStepKey = "quiz-step-3" | "quiz-step-4" | "quiz-step-5" | "quiz-step-6";
+type OptionStepKey = "quiz-step-3" | "quiz-step-4" | "quiz-step-5";
 
 interface OptionStepProps {
   step: OptionStepKey;
@@ -11,10 +11,9 @@ interface OptionStepProps {
 }
 
 const STEP_ANSWER_KEY: Record<OptionStepKey, keyof Answers> = {
-  "quiz-step-3": "traffic",
-  "quiz-step-4": "process",
-  "quiz-step-5": "revenue",
-  "quiz-step-6": "commitment",
+  "quiz-step-3": "profile",
+  "quiz-step-4": "goal",
+  "quiz-step-5": "situation",
 };
 
 export function OptionStep({ step, answers, onSelect, onPrev }: OptionStepProps) {
@@ -42,11 +41,6 @@ export function OptionStep({ step, answers, onSelect, onPrev }: OptionStepProps)
         {STEP_QUESTIONS[step]}
       </h2>
 
-      {step === "quiz-step-5" && (
-        <p className="text-[11px] text-white/30 tracking-wide mb-7">
-          * Não influencia no preço do serviço
-        </p>
-      )}
       <div className="flex flex-col gap-3 w-full mb-8">
         {options.map((option) => {
           const isSelected = answers[answerKey] === option;

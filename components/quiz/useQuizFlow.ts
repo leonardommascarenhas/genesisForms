@@ -25,10 +25,9 @@ interface UseQuizFlowReturn {
 const INITIAL_ANSWERS: Answers = {
   name: "",
   phone: "",
-  traffic: "",
-  process: "",
-  revenue: "",
-  commitment: "",
+  profile: "",
+  goal: "",
+  situation: "",
 };
 
 export function useQuizFlow(): UseQuizFlowReturn {
@@ -84,14 +83,9 @@ export function useQuizFlow(): UseQuizFlowReturn {
       setAnswers(updated);
 
       if (currentStep === STEPS_MAP.length - 1) {
-        const isQualified = value === "Sim, estamos dispostos";
-        const finalResult: "qualified" | "disqualified" = isQualified
-          ? "qualified"
-          : "disqualified";
-
         setTransitioning(true);
         setTimeout(() => {
-          setResult(finalResult);
+          setResult("qualified");
           setTransitioning(false);
         }, 400);
         return;

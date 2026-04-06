@@ -3,10 +3,10 @@ interface HomeScreenProps {
 }
 
 const BENEFITS = [
-  { icon: "🎯", text: "Leads mais qualificados" },
-  { icon: "📈", text: "Mais retorno sobre mídia" },
-  { icon: "📋", text: "CRM para o comercial" },
-  { icon: "🤖", text: "IA que qualifica e agenda" },
+  { icon: "🧹", text: "Limpeza de nome CPF/CNPJ" },
+  { icon: "📄", text: "Regularização de restrições" },
+  { icon: "💳", text: "Recuperação de crédito" },
+  { icon: "🔒", text: "Processo sigiloso e individual" },
 ];
 
 export function HomeScreen({ onStart }: HomeScreenProps) {
@@ -15,24 +15,25 @@ export function HomeScreen({ onStart }: HomeScreenProps) {
       {/* Badge */}
       <div className="glass rounded-full px-5 py-2 inline-flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wide text-(--dg-cyan) border border-(--dg-cyan)/20">
         <span className="pulse-dot" />
-        <span className="sm:hidden">+R$100mi faturados · +R$10mi gerenciados</span>
+        <span className="sm:hidden">Análise individual · Processo sigiloso</span>
         <span className="hidden sm:inline">
-          +R$100mi faturados · +R$10mi gerenciados · +50 nichos
+          Análise individual · Processo sigiloso · Atendimento prioritário
         </span>
       </div>
 
-      {/* Título — um nível menor em cada breakpoint */}
+      {/* Título */}
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-        Mais demanda qualificada, menos lead perdido e mais vendas{" "}
-        <span className="text-gradient">com estrutura.</span>
+        Solicite seu diagnóstico financeiro{" "}
+        <span className="text-gradient">e recupere seu crédito.</span>
       </h1>
 
-      {/* Subtítulo — texto ligeiramente encurtado */}
+      {/* Subtítulo */}
       <p className="text-sm md:text-base text-(--text-muted) leading-relaxed max-w-xl">
-        Tráfego Pago, CRM e IA para empresas que querem vender com previsibilidade.
+        Analisamos sua situação para estruturar a melhor estratégia de recuperação de
+        crédito, de forma individual e sigilosa.
       </p>
 
-      {/* Cards — textos encurtados para caber melhor */}
+      {/* Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full">
         {BENEFITS.map((b) => (
           <div
@@ -51,13 +52,12 @@ export function HomeScreen({ onStart }: HomeScreenProps) {
         onClick={onStart}
         className="btn-glow w-full md:w-auto px-8 md:px-12 py-4 rounded-full text-base md:text-lg font-bold inline-flex items-center justify-center gap-3 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98] transition-all"
         style={{ background: "var(--primary-gradient)", color: "#fff" }}>
-        QUERO UM DIAGNÓSTICO <span>→</span>
+        QUERO MEU DIAGNÓSTICO <span>→</span>
       </button>
 
       {/* Disclaimer */}
       <p className="text-xs opacity-70 text-(--text-muted)">
-        Estrutura indicada para empresas com investimento mínimo de R$2.000/mês em
-        anúncios.
+        Diagnóstico estratégico individual. Processo 100% sigiloso e personalizado.
       </p>
     </div>
   );

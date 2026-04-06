@@ -1,4 +1,5 @@
 import { FacebookPixel } from "@/components/FacebookPixel";
+
 interface ResultQualifiedProps {
   scheduleLoading: boolean;
   scheduleError: string | null;
@@ -14,7 +15,7 @@ export function ResultQualified({
 }: ResultQualifiedProps) {
   return (
     <div className="glassPanel p-4 sm:p-8 md:p-12 lg:p-16 gap-0">
-      <FacebookPixel pixelId="1381334544032874" />
+      <FacebookPixel pixelId="949129784424259" />
       <div
         className="text-4xl sm:text-5xl lg:text-6xl mb-4"
         style={{ animation: "bounceIn 1s cubic-bezier(0.36,0,0.66,-0.56) both" }}>
@@ -22,19 +23,21 @@ export function ResultQualified({
       </div>
 
       <h2 className="text-gradient text-xl sm:text-2xl font-semibold leading-snug mb-6 sm:mb-8 w-full text-left">
-        Sua empresa está em um perfil que faz sentido para nossa estrutura.
+        Etapa final do seu diagnóstico financeiro.
       </h2>
 
       <div className="text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 w-full text-left">
         <p className="mb-4">
-          Agora escolha o melhor horário para uma conversa estratégica com nosso time.
+          Para avançarmos, realizamos uma análise aprofundada do seu CPF ou CNPJ,
+          avaliando sua situação financeira e os pontos que podem estar impedindo seu
+          acesso ao crédito.
         </p>
-        <p className="mb-3">Nesse diagnóstico, vamos analisar:</p>
+        <p className="mb-3">Essa análise permite identificar:</p>
         <ul className="flex flex-col gap-3">
           {[
-            "Sua operação atual",
-            "Os gargalos de geração e conversão",
-            "Como tráfego, CRM e IA podem aumentar suas oportunidades de venda",
+            "O que está bloqueando seu acesso ao crédito",
+            "O que pode ser revertido na sua situação atual",
+            "Quais caminhos realmente fazem sentido para o seu caso",
           ].map((item) => (
             <li key={item} className="pl-7 sm:pl-8 relative">
               <span className="absolute left-0 font-bold text-(--dg-green)">✓</span>
@@ -45,8 +48,17 @@ export function ResultQualified({
       </div>
 
       <div className="flex items-center flex-col w-full rounded-2xl p-4 sm:p-6 bg-black/20 border border-(--glass-border)">
-        <p className="font-semibold mb-4 text-(--dg-cyan) text-sm sm:text-base">
-          🗓️ Agendamento de Diagnóstico
+        <p className="font-semibold mb-2 text-(--dg-cyan) text-sm sm:text-base">
+          Diagnóstico estratégico individual
+        </p>
+        <p className="text-white/50 text-xs sm:text-sm mb-4 text-center">
+          Valor do diagnóstico:{" "}
+          <span className="text-white/80 font-semibold">R$20,00</span>
+        </p>
+        <p className="text-white/35 text-[11px] sm:text-xs mb-5 text-center leading-relaxed max-w-sm">
+          Esse valor garante uma análise real do seu caso, com direcionamento estratégico.
+          Ao final do processo, realizamos uma nova consulta 100% gratuita para confirmar
+          que não há mais restrições em seu CPF ou CNPJ.
         </p>
 
         {scheduleSuccess ? (
@@ -71,7 +83,7 @@ export function ResultQualified({
                   Enviando...
                 </>
               ) : (
-                <>Agendar Diagnóstico →</>
+                <>Sim, quero meu diagnóstico →</>
               )}
             </button>
 
