@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* ─── CSS Variables ──────────────────────────────────────── */
+
+:root {
+  --bg-dark: #07090e;
+  --bg-darker: #040508;
+  --dg-green: #8cc63f;
+  --dg-cyan: #80ffea;
+  --text-main: #f4f6f8;
+  --text-muted: #a0aabf;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.12);
+  --primary-gradient: linear-gradient(135deg, #8cc63f 0%, #10b981 100%);
+  --accent-gradient: linear-gradient(135deg, #80ffea 0%, #0ea5e9 100%);
+  --glow-shadow: 0 0 20px rgba(140, 198, 63, 0.3);
+  --font-outfit: "Outfit", sans-serif;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+  }
+}
+body {
+  font-family: var(--font-outfit);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* ─── Keyframes ──────────────────────────────────────────── */
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(10%, 10%) scale(1.1);
+  }
+  100% {
+    transform: translate(-5%, -15%) scale(0.9);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(128, 255, 234, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(128, 255, 234, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(128, 255, 234, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ─── Utility classes ────────────────────────────────────── */
+.text-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glassPanel {
+    background: rgba(20, 24, 34, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+.btn-glow {
+  box-shadow: var(--glow-shadow);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--dg-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--dg-cyan);
+  animation: pulse 2s infinite;
+  display: inline-block;
+}
+
+/* ─── Background shapes ──────────────────────────────────── */
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: var(--dg-green);
+  animation-delay: -5s;
+}
+
+.shape-2 {
+  bottom: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: var(--dg-cyan);
+  animation-duration: 25s;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */

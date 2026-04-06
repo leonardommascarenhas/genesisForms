@@ -1,0 +1,148 @@
+import { useState, useCallback } from "react";
+import type { Answers } from "@/types";
+import { STEPS_MAP, STEP_ANSWER_KEY } from "@/types";
+import { validateStep } from "@/utils";
+import { sendToWebhook } from "@/webhook";
+
+interface UseQuizFlowReturn {
+  activeScreen: string;
+  currentStep: number;
+  answers: Answers;
+  transitioning: boolean;
+  scheduleLoading: boolean;
+  scheduleError: string | null;
+  scheduleSuccess: boolean;
+  startQuiz: () => void;
+  nextStep: () => void;
+  prevStep: () => void;
+  goToStep: (index: number) => void;
+  selectOption: (option: string | string[]) => void;
+  setAnswer: (key: keyof Answers, value: string) => void;
+  handleSchedule: () => Promise<void>;
+  reset: () => void;
+}
+
+const INITIAL_ANSWERS: Answers = {
+  name: "",
+  phone: "",
+  traffic: "",
+  process: "",
+  revenue: "",
+  commitment: "",
+};
+
+export function useQuizFlow(): UseQuizFlowReturn {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState<Answers>(INITIAL_ANSWERS);
+  const [result, setResult] = useState<"qualified" | "disqualified" | null>(null);
+  const [transitioning, setTransitioning] = useState(false);
+  const [scheduleLoading, setScheduleLoading] = useState(false);
+  const [scheduleError, setScheduleError] = useState<string | null>(null);
+  const [scheduleSuccess, setScheduleSuccess] = useState(false);
+
+  const activeScreen = result
+    ? result === "qualified"
+      ? "result-qualified"
+      : "result-disqualified"
+    : STEPS_MAP[currentStep];
+
+  const goToStep = useCallback((nextIndex: number) => {
+    setTransitioning(true);
+    setTimeout(() => {
+      setCurrentStep(nextIndex);
+      setTransitioning(false);
+    }, 400);
+  }, []);
+
+  const startQuiz = useCallback(() => goToStep(1), [goToStep]);
+
+  const nextStep = useCallback(() => {
+    const step = STEPS_MAP[currentStep];
+    if (!validateStep(step, answers)) {
+      alert("Por favor, preencha o campo corretamente para continuar.");
+      return;
+    }
+    goToStep(currentStep + 1);
+  }, [currentStep, answers, goToStep]);
+
+  const prevStep = useCallback(() => {
+    if (currentStep > 0) goToStep(currentStep - 1);
+  }, [currentStep, goToStep]);
+
+  const setAnswer = useCallback((key: keyof Answers, value: string) => {
+    setAnswers((prev) => ({ ...prev, [key]: value }));
+  }, []);
+
+  const selectOption = useCallback(
+    (option: string | string[]) => {
+      const step = STEPS_MAP[currentStep];
+      const key = STEP_ANSWER_KEY[step];
+      if (!key) return;
+
+      const value = Array.isArray(option) ? option.join(", ") : option;
+      const updated = { ...answers, [key]: value };
+      setAnswers(updated);
+
+      if (currentStep === STEPS_MAP.length - 1) {
+        const isQualified = value === "Sim, estamos dispostos";
+        const finalResult: "qualified" | "disqualified" = isQualified
+          ? "qualified"
+          : "disqualified";
+
+        setTransitioning(true);
+        setTimeout(() => {
+          setResult(finalResult);
+          setTransitioning(false);
+        }, 400);
+        return;
+      }
+
+      goToStep(currentStep + 1);
+    },
+    [currentStep, answers, goToStep]
+  );
+
+  const handleSchedule = useCallback(async () => {
+    setScheduleLoading(true);
+    setScheduleError(null);
+    try {
+      await sendToWebhook(answers, "qualified");
+      setScheduleSuccess(true);
+      window.open("https://calendar.app.google/9MdK3LDzT3zgjBTZ6", "_blank");
+    } catch (err) {
+      console.error("Webhook error:", err);
+      setScheduleError(
+        "Ocorreu um erro ao agendar. Tente novamente ou entre em contato pelo WhatsApp."
+      );
+    } finally {
+      setScheduleLoading(false);
+    }
+  }, [answers]);
+
+  const reset = useCallback(() => {
+    setResult(null);
+    setCurrentStep(0);
+    setScheduleLoading(false);
+    setScheduleError(null);
+    setScheduleSuccess(false);
+    setAnswers(INITIAL_ANSWERS);
+  }, []);
+
+  return {
+    activeScreen,
+    currentStep,
+    answers,
+    transitioning,
+    scheduleLoading,
+    scheduleError,
+    scheduleSuccess,
+    startQuiz,
+    nextStep,
+    prevStep,
+    goToStep,
+    selectOption,
+    setAnswer,
+    handleSchedule,
+    reset,
+  };
+}
