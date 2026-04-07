@@ -102,7 +102,6 @@ export function useQuizFlow(): UseQuizFlowReturn {
     try {
       await sendToWebhook(answers, "qualified");
       setScheduleSuccess(true);
-      window.open("https://calendar.app.google/9MdK3LDzT3zgjBTZ6", "_blank");
     } catch (err) {
       console.error("Webhook error:", err);
       setScheduleError(
