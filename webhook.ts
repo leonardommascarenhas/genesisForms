@@ -1,7 +1,7 @@
 import type { Answers } from "./types";
 
 const WEBHOOK_URL =
-  "https://n8n.srv1067347.hstgr.cloud/webhook/22158f5b-1b15-4d50-8b85-3213cde7ffb5";
+  "https://n8n.srv1067347.hstgr.cloud/webhook/0zzc120-5555-4416-9480-184c4ab10931";
 
 export function normalizePhone(phone: string): string {
   if (!phone) return "";
