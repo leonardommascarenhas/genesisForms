@@ -1,5 +1,3 @@
-import { FacebookPixel } from "@/components/FacebookPixel";
-
 interface ResultQualifiedProps {
   scheduleLoading: boolean;
   scheduleError: string | null;
@@ -15,7 +13,6 @@ export function ResultQualified({
 }: ResultQualifiedProps) {
   return (
     <div className="glassPanel p-4 sm:p-8 md:p-12 lg:p-16 gap-0">
-      <FacebookPixel pixelId="949129784424259" />
       <div
         className="text-4xl sm:text-5xl lg:text-6xl mb-4"
         style={{ animation: "bounceIn 1s cubic-bezier(0.36,0,0.66,-0.56) both" }}>
