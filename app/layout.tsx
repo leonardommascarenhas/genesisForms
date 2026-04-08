@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className="font-outfit min-h-screen overflow-hidden"
         style={{ backgroundColor: "var(--bg-dark)", color: "var(--text-main)" }}>
-        <FacebookPixel pixelId="949129784424259" />
+        <FacebookPixel pixelId="821974483680719" />
 
         <div
           className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
