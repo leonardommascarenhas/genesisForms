@@ -102,6 +102,7 @@ export function useQuizFlow(): UseQuizFlowReturn {
     try {
       await sendToWebhook(answers, "qualified");
       setScheduleSuccess(true);
+      window.history.pushState({}, "", "/obrigado");
     } catch (err) {
       console.error("Webhook error:", err);
       setScheduleError(

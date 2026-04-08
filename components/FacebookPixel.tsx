@@ -21,7 +21,6 @@ declare global {
 export function FacebookPixel({ pixelId }: { pixelId: string }) {
   useEffect(() => {
     // Muda a URL quando o componente monta
-    window.history.pushState({}, "", "/obrigado");
 
     if (!window.fbq) {
       const script = document.createElement("script");
