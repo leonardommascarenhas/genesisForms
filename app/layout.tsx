@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { FacebookPixel } from "@/components/FacebookPixel";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         className="font-outfit min-h-screen overflow-hidden"
         style={{ backgroundColor: "var(--bg-dark)", color: "var(--text-main)" }}>
         {/* Animated background shapes */}
+        <FacebookPixel pixelId="821974483680719" />
         <div
           className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
           style={{
