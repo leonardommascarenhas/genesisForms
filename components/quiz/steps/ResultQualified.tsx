@@ -61,7 +61,7 @@ export function ResultQualified({
               <li
                 key={item}
                 className="flex items-start gap-2 text-xs sm:text-sm text-white/90">
-                <span className="flex-shrink-0 w-4 h-4 rounded-full border border-(--dg-cyan) text-(--dg-cyan) flex items-center justify-center text-[10px] mt-0.5">
+                <span className="shrink-0 w-4 h-4 rounded-full border border-(--dg-cyan) text-(--dg-cyan) flex items-center justify-center text-[10px] mt-0.5">
                   ✓
                 </span>
                 {item}

@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  interactiveWidget: "resizes-visual",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main
           id="app-container"
           className="w-full overflow-hidden"
-          style={{ height: "100dvh" }}>
+          style={{ height: "100svh" }}>
           {children}
         </main>
       </body>
