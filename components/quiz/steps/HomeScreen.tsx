@@ -11,7 +11,7 @@ const BENEFITS = [
 
 export function HomeScreen({ onStart }: HomeScreenProps) {
   return (
-    <div className="w-full flex flex-col items-center gap-5 md:gap-6 text-center">
+    <div className="w-full flex flex-col items-center gap-3.5 md:gap-6 text-center">
       {/* Badge */}
       <div className="glass rounded-full px-5 py-2 inline-flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wide text-(--dg-cyan) border border-(--dg-cyan)/20">
         <span className="pulse-dot" />
