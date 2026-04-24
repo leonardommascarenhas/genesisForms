@@ -40,7 +40,7 @@ export default function QuizFlow() {
   }`;
 
   return (
-    <div className="h-dvh flex flex-col items-center justify-center px-4">
+    <div className="h-full flex flex-col items-center justify-center px-4">
       <div className={wrapperClass}>
         <img
           src="/logo.png"

@@ -29,14 +29,7 @@ export function ResultQualified({
 
   return (
     <div className="w-full flex items-center justify-center px-4">
-      <div className="glassPanel w-full max-w-lg flex flex-col p-5 sm:p-8 gap-3 sm:gap-4">
-        {/* Badge */}
-        <div className="flex justify-center">
-          <div className="px-5 py-1.5 rounded-full border border-(--glass-border) bg-black/20 text-xs font-semibold tracking-[0.2em] text-(--dg-cyan)">
-            ÚLTIMA ETAPA
-          </div>
-        </div>
-
+      <div className="glassPanel w-full max-w-lg flex flex-col p-5 sm:p-8 gap-3.5 sm:gap-4">
         {/* Title */}
         <h2 className="text-gradient font-semibold leading-tight text-center text-xl sm:text-3xl">
           {isMobile
