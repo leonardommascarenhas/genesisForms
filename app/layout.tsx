@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { FacebookPixel } from "@/components/FacebookPixel";
-import { KeyboardLock } from "@/components/KeyboardLock";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -20,16 +19,14 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className={outfit.variable}>
       <body
-        className="font-outfit min-h-screen"
+        className="font-outfit fixed inset-0 overflow-hidden"
         style={{ backgroundColor: "var(--bg-dark)", color: "var(--text-main)" }}>
-        <KeyboardLock />
         <FacebookPixel pixelId="821974483680719" />
         <div
           className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
@@ -40,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="shape shape-1" /> <div className="shape shape-2" />
         </div>
         {/* Main content */}
-        <main id="app-container" className="h-dvh overflow-hidden">
+        <main id="app-container" className="h-full w-full overflow-hidden">
           {children}
         </main>
       </body>
