@@ -13,15 +13,22 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Genesis | Renova Cred",
   description:
-    " Analisamos sua situação para estruturar a melhor estratégia de recuperação de crédito, de forma individual e sigilosa.",
+    "Analisamos sua situação para estruturar a melhor estratégia de recuperação de crédito, de forma individual e sigilosa.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className={outfit.variable}>
       <body
-        className="font-outfit min-h-screen overflow-hidden"
-        style={{ backgroundColor: "var(--bg-dark)", color: "var(--text-main)" }}>
+        className="font-outfit"
+        style={{
+          backgroundColor: "var(--bg-dark)",
+          color: "var(--text-main)",
+          position: "fixed",
+          width: "100%",
+          height: "100%",
+          overscrollBehavior: "none",
+        }}>
         <FacebookPixel pixelId="821974483680719" />
 
         <div
@@ -35,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
 
         {/* Main content */}
-        <main id="app-container" className="h-dvh">
+        <main id="app-container" className="h-dvh overflow-hidden">
           {children}
         </main>
       </body>
