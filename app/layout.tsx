@@ -19,16 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className={outfit.variable}>
-      <body
-        className="font-outfit"
-        style={{
-          backgroundColor: "var(--bg-dark)",
-          color: "var(--text-main)",
-          position: "fixed",
-          width: "100%",
-          height: "100%",
-          overscrollBehavior: "none",
-        }}>
+      <body className="font-outfit">
         <FacebookPixel pixelId="821974483680719" />
 
         <div
@@ -42,7 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
 
         {/* Main content */}
-        <main id="app-container" className="h-dvh overflow-hidden">
+        <main id="app-container" className="max-h-dvh overflow-hidden">
           {children}
         </main>
       </body>
