@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="shape shape-1" /> <div className="shape shape-2" />
         </div>
         {/* Main content */}
-        <main id="app-container" className="h-full w-full overflow-hidden">
+        <main id="app-container" className="h-dvh w-full overflow-hidden">
           {children}
         </main>
       </body>
