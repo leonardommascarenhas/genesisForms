@@ -1,23 +1,32 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { FacebookPixel } from "@/components/FacebookPixel";
+
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-outfit",
 });
+
 export const metadata: Metadata = {
   title: "Genesis | Renova Cred",
   description:
-    " Analisamos sua situação para estruturar a melhor estratégia de recuperação de crédito, de forma individual e sigilosa.",
+    "Analisamos sua situação para estruturar a melhor estratégia de recuperação de crédito, de forma individual e sigilosa.",
 };
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  interactiveWidget: "resizes-content",
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className={outfit.variable}>
       <body
-        className="font-outfit min-h-screen overflow-hidden"
+        className="font-outfit min-h-screen"
         style={{ backgroundColor: "var(--bg-dark)", color: "var(--text-main)" }}>
         <FacebookPixel pixelId="821974483680719" />
         <div
@@ -29,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="shape shape-1" /> <div className="shape shape-2" />
         </div>
         {/* Main content */}
-        <main id="app-container" className="h-dvh">
+        <main id="app-container" className="h-dvh overflow-hidden">
           {children}
         </main>
       </body>
