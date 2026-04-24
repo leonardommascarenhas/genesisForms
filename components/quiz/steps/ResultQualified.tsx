@@ -123,14 +123,14 @@ export function ResultQualified({
               )}
             </button>
 
-            <div className="flex items-start gap-2 justify-center">
-              <span className="text-white/40 text-xs mt-0.5">🛡</span>
-              <p className="text-white/50 text-xs text-center leading-relaxed">
-                {isMobile
-                  ? "Sua análise segue com mais precisão após essa etapa."
-                  : "Ao concluir esta etapa, sua análise poderá seguir com mais precisão."}
-              </p>
-            </div>
+            {!isMobile && (
+              <div className="flex items-start gap-2 justify-center">
+                <span className="text-white/40 text-xs mt-0.5">🛡</span>
+                <p className="text-white/50 text-xs text-center leading-relaxed">
+                  Ao concluir esta etapa, sua análise poderá seguir com mais precisão.
+                </p>
+              </div>
+            )}
 
             {scheduleError && (
               <p className="text-xs text-red-400 text-center">⚠️ {scheduleError}</p>
