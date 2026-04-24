@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { FacebookPixel } from "@/components/FacebookPixel";
+import { KeyboardLock } from "@/components/KeyboardLock";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className="font-outfit min-h-screen"
         style={{ backgroundColor: "var(--bg-dark)", color: "var(--text-main)" }}>
+        <KeyboardLock />
         <FacebookPixel pixelId="821974483680719" />
         <div
           className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
