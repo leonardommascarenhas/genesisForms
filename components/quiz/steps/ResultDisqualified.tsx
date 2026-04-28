@@ -4,7 +4,7 @@ interface ResultDisqualifiedProps {
 
 export function ResultDisqualified({ onReset }: ResultDisqualifiedProps) {
   return (
-    <div className="glassPanel p-24 gap-0">
+    <div className="glassPanel p-4 gap-0">
       <div className="text-6xl mb-4">💬</div>
 
       <h2 className="text-2xl font-semibold leading-snug mb-6 w-full text-left">
