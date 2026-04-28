@@ -5,21 +5,16 @@ interface ResultDisqualifiedProps {
 export function ResultDisqualified({ onReset }: ResultDisqualifiedProps) {
   return (
     <div className="glassPanel p-24 gap-0">
-      <div className="text-6xl mb-4">🏢</div>
+      <div className="text-6xl mb-4">💬</div>
 
       <h2 className="text-2xl font-semibold leading-snug mb-6 w-full text-left">
-        Ainda não é o momento ideal para avançarmos com essa estrutura.
+        Ainda não conseguimos atuar no seu caso.
       </h2>
 
-      <div className="text-base leading-relaxed mb-8 w-full text-left text-(--text-muted)">
-        <p className="mb-3">
-          Hoje, nosso modelo é indicado para empresas que já têm operação ativa e estão
-          prontas para investir em crescimento com mais previsibilidade.
-        </p>
-        <p>
-          Quando sua empresa estiver nesse momento, será um prazer analisar seu cenário.
-        </p>
-      </div>
+      <p className="text-base leading-relaxed mb-8 w-full text-left text-(--text-muted)">
+        Nossa assessoria exige um perfil específico de dívida para que a gente consiga
+        entregar um resultado real. Se sua situação mudar, pode voltar quando quiser.
+      </p>
 
       <button
         onClick={onReset}
