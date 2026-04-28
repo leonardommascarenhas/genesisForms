@@ -103,25 +103,34 @@ export function ResultQualified({
           </div>
         ) : (
           <>
-            <button
-              onClick={onSchedule}
-              disabled={scheduleLoading}
-              className="btn-glow w-full py-3.5 rounded-full text-sm sm:text-base font-bold inline-flex items-center justify-center gap-3 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
-              style={{
-                background: scheduleLoading
-                  ? "rgba(140, 198, 63, 0.4)"
-                  : "var(--primary-gradient)",
-                color: "#fff",
-              }}>
-              {scheduleLoading ? (
-                <>
-                  <span className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
-                  Enviando...
-                </>
-              ) : (
-                <>{isMobile ? "Continuar" : "Quero continuar"}</>
-              )}
-            </button>
+            <div className="flex gap-3 w-full">
+              <button
+                onClick={onSchedule}
+                disabled={scheduleLoading}
+                className="btn-glow flex-1 py-3.5 rounded-full text-sm sm:text-base font-bold inline-flex items-center justify-center gap-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                style={{
+                  background: scheduleLoading
+                    ? "rgba(140, 198, 63, 0.4)"
+                    : "var(--primary-gradient)",
+                  color: "#fff",
+                }}>
+                {scheduleLoading ? (
+                  <>
+                    <span className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>Sim</>
+                )}
+              </button>
+
+              <button
+                disabled={scheduleLoading}
+                className="flex-1 py-3.5 rounded-full text-sm sm:text-base font-bold inline-flex items-center justify-center gap-2 transition-all border border-white/20 text-white/60 hover:border-white/40 hover:text-white/80 disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{ background: "rgba(255,255,255,0.05)" }}>
+                Não
+              </button>
+            </div>
 
             {!isMobile && (
               <div className="flex items-start gap-2 justify-center">
