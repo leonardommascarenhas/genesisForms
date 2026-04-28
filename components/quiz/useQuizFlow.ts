@@ -15,6 +15,7 @@ interface UseQuizFlowReturn {
   startQuiz: () => void;
   nextStep: () => void;
   prevStep: () => void;
+  proceedToQualified: () => void;
   goToStep: (index: number) => void;
   selectOption: (option: string | string[]) => void;
   setAnswer: (key: keyof Answers, value: string) => void;
@@ -46,7 +47,9 @@ function evaluateDebt(debtRange: string): "qualified" | "disqualified" | "pendin
 export function useQuizFlow(): UseQuizFlowReturn {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>(INITIAL_ANSWERS);
-  const [result, setResult] = useState<"qualified" | "disqualified" | null>(null);
+  const [result, setResult] = useState<
+    "pre-qualified" | "qualified" | "disqualified" | null
+  >(null);
   const [transitioning, setTransitioning] = useState(false);
   const [scheduleLoading, setScheduleLoading] = useState(false);
   const [scheduleError, setScheduleError] = useState<string | null>(null);
@@ -55,6 +58,8 @@ export function useQuizFlow(): UseQuizFlowReturn {
   const activeScreen = result
     ? result === "qualified"
       ? "result-qualified"
+      : result === "pre-qualified"
+      ? "result-pre-qualified"
       : "result-disqualified"
     : STEPS_MAP[currentStep];
 
@@ -115,7 +120,7 @@ export function useQuizFlow(): UseQuizFlowReturn {
       if (currentStep === STEPS_MAP.length - 1) {
         setTransitioning(true);
         setTimeout(() => {
-          setResult("qualified");
+          setResult("pre-qualified"); // ← era "qualified"
           setTransitioning(false);
         }, 400);
         return;
@@ -125,6 +130,14 @@ export function useQuizFlow(): UseQuizFlowReturn {
     },
     [currentStep, answers, goToStep]
   );
+
+  const proceedToQualified = useCallback(() => {
+    setTransitioning(true);
+    setTimeout(() => {
+      setResult("qualified");
+      setTransitioning(false);
+    }, 400);
+  }, []);
 
   const handleSchedule = useCallback(async () => {
     setScheduleLoading(true);
@@ -160,6 +173,7 @@ export function useQuizFlow(): UseQuizFlowReturn {
     scheduleLoading,
     scheduleError,
     scheduleSuccess,
+    proceedToQualified,
     startQuiz,
     nextStep,
     prevStep,

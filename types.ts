@@ -7,6 +7,7 @@ export type QuizStepId = (typeof STEPS_CONFIG)[number]["id"];
 export type Step =
   | "screen-home"
   | QuizStepId
+  | "result-pre-qualified"
   | "result-qualified"
   | "result-disqualified";
 

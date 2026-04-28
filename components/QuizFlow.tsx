@@ -8,6 +8,7 @@ import { ResultQualified } from "./quiz/steps/ResultQualified";
 import { ResultDisqualified } from "./quiz/steps/ResultDisqualified";
 import { STEPS_CONFIG } from "@/steps.config";
 import type { Step } from "@/types";
+import { ResultPreQualified } from "./quiz/steps/ResultPreQualified";
 
 type TextStepId = Extract<(typeof STEPS_CONFIG)[number], { type: "text" }>["id"];
 type OptionStepId = Extract<(typeof STEPS_CONFIG)[number], { type: "option" }>["id"];
@@ -44,6 +45,7 @@ export default function QuizFlow() {
     setAnswer,
     handleSchedule,
     reset,
+    proceedToQualified,
   } = useQuizFlow();
 
   const screen = activeScreen as Step;
@@ -83,7 +85,9 @@ export default function QuizFlow() {
             onPrev={prevStep}
           />
         )}
-
+        {screen === "result-pre-qualified" && (
+          <ResultPreQualified onProceed={proceedToQualified} />
+        )}
         {screen === "result-qualified" && (
           <ResultQualified
             scheduleLoading={scheduleLoading}
