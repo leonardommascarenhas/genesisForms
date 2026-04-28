@@ -1,66 +1,48 @@
+import { STEPS_CONFIG } from "./steps.config";
+export type { StepConfig } from "./steps.config";
+
+// Tipos derivados automaticamente do config
+export type QuizStepId = (typeof STEPS_CONFIG)[number]["id"];
+
 export type Step =
   | "screen-home"
-  | "quiz-step-1"
-  | "quiz-step-2"
-  | "quiz-step-3"
-  | "quiz-step-4"
-  | "quiz-step-5"
+  | QuizStepId
   | "result-qualified"
   | "result-disqualified";
 
 export interface Answers {
   name: string;
   phone: string;
+  debtRange: string;
   profile: string;
   goal: string;
   situation: string;
+  acceptsFee: string;
 }
-
-export const STEP_OPTIONS = {
-  "quiz-step-3": ["Empresário", "Autônomo", "CLT"],
-  "quiz-step-4": [
-    "Voltar a ter crédito",
-    "Conseguir financiamento",
-    "Regularizar CPF/CNPJ",
-  ],
-  "quiz-step-5": [
-    "Tenho restrições e posso negociar",
-    "Tenho restrições, mas estou sem caixa",
-    "Não sei ao certo",
-  ],
-} as const;
-
-export const STEP_QUESTIONS: Partial<Record<Step, string>> = {
-  "quiz-step-1": "Qual o seu nome?",
-  "quiz-step-2": "Qual o seu WhatsApp?",
-  "quiz-step-3": "Você é:",
-  "quiz-step-4": "O que você busca:",
-  "quiz-step-5": "Qual sua situação hoje:",
-};
 
 export const STEPS_MAP: Step[] = [
   "screen-home",
-  "quiz-step-1",
-  "quiz-step-2",
-  "quiz-step-3",
-  "quiz-step-4",
-  "quiz-step-5",
+  ...STEPS_CONFIG.map((s) => s.id as QuizStepId),
 ];
 
-export const STEP_ANSWER_KEY: Partial<Record<Step, keyof Answers>> = {
-  "quiz-step-1": "name",
-  "quiz-step-2": "phone",
-  "quiz-step-3": "profile",
-  "quiz-step-4": "goal",
-  "quiz-step-5": "situation",
-};
+export const TOTAL_STEPS = STEPS_CONFIG.length;
 
-export const TOTAL_STEPS = 5;
+export const STEP_QUESTIONS = Object.fromEntries(
+  STEPS_CONFIG.map((s) => [s.id, s.question])
+) as Record<QuizStepId, string>;
 
-export const STEP_DISPLAY_NUMBER: Record<string, number> = {
-  "quiz-step-1": 1,
-  "quiz-step-2": 2,
-  "quiz-step-3": 3,
-  "quiz-step-4": 4,
-  "quiz-step-5": 5,
-};
+export const STEP_ANSWER_KEY = Object.fromEntries(
+  STEPS_CONFIG.map((s) => [s.id, s.answerKey])
+) as Record<QuizStepId, keyof Answers>;
+
+export const STEP_DISPLAY_NUMBER = Object.fromEntries(
+  STEPS_CONFIG.map((s, i) => [s.id, i + 1])
+) as Record<QuizStepId, number>;
+
+// Só os steps de opção têm `options`
+export const STEP_OPTIONS = Object.fromEntries(
+  STEPS_CONFIG.filter((s) => s.type === "option").map((s) => [
+    s.id,
+    (s as Extract<typeof s, { type: "option" }>).options,
+  ])
+) as Record<string, readonly string[]>;

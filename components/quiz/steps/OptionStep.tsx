@@ -1,7 +1,7 @@
 import { STEP_QUESTIONS, STEP_OPTIONS, TOTAL_STEPS, STEP_DISPLAY_NUMBER } from "@/types";
 import type { Answers } from "@/types";
 
-type OptionStepKey = "quiz-step-3" | "quiz-step-4" | "quiz-step-5";
+type OptionStepKey = "quiz-step-3" | "quiz-step-4" | "quiz-step-5" | "quiz-step-6"; // ← added
 
 interface OptionStepProps {
   step: OptionStepKey;
@@ -11,9 +11,10 @@ interface OptionStepProps {
 }
 
 const STEP_ANSWER_KEY: Record<OptionStepKey, keyof Answers> = {
-  "quiz-step-3": "profile",
-  "quiz-step-4": "goal",
-  "quiz-step-5": "situation",
+  "quiz-step-3": "debtRange", // ← updated
+  "quiz-step-4": "profile",
+  "quiz-step-5": "goal",
+  "quiz-step-6": "situation", // ← added
 };
 
 export function OptionStep({ step, answers, onSelect, onPrev }: OptionStepProps) {

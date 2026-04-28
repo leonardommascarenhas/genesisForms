@@ -6,13 +6,28 @@ import { TextInputStep } from "./quiz/steps/TextInputStep";
 import { OptionStep } from "./quiz/steps/OptionStep";
 import { ResultQualified } from "./quiz/steps/ResultQualified";
 import { ResultDisqualified } from "./quiz/steps/ResultDisqualified";
+import { STEPS_CONFIG } from "@/steps.config";
 import type { Step } from "@/types";
 
-const TEXT_STEPS: Step[] = ["quiz-step-1", "quiz-step-2"];
-const OPTION_STEPS: Step[] = ["quiz-step-3", "quiz-step-4", "quiz-step-5"];
+type TextStepId = Extract<(typeof STEPS_CONFIG)[number], { type: "text" }>["id"];
+type OptionStepId = Extract<(typeof STEPS_CONFIG)[number], { type: "option" }>["id"];
 
-type TextStep = "quiz-step-1" | "quiz-step-2";
-type OptionStep = "quiz-step-3" | "quiz-step-4" | "quiz-step-5";
+const TEXT_STEP_IDS = STEPS_CONFIG.filter(
+  (s): s is Extract<typeof s, { type: "text" }> => s.type === "text"
+).map((s) => s.id);
+
+const OPTION_STEP_IDS = STEPS_CONFIG.filter(
+  (s): s is Extract<typeof s, { type: "option" }> => s.type === "option"
+).map((s) => s.id);
+
+// Type guards — o TS reconhece o narrowing corretamente
+function isTextStep(s: Step): s is TextStepId {
+  return TEXT_STEP_IDS.includes(s as TextStepId);
+}
+
+function isOptionStep(s: Step): s is OptionStepId {
+  return OPTION_STEP_IDS.includes(s as OptionStepId);
+}
 
 export default function QuizFlow() {
   const {
@@ -50,9 +65,9 @@ export default function QuizFlow() {
 
         {screen === "screen-home" && <HomeScreen onStart={startQuiz} />}
 
-        {TEXT_STEPS.includes(screen) && (
+        {isTextStep(screen) && (
           <TextInputStep
-            step={screen as TextStep}
+            step={screen}
             answers={answers}
             onAnswer={setAnswer}
             onNext={nextStep}
@@ -60,9 +75,9 @@ export default function QuizFlow() {
           />
         )}
 
-        {OPTION_STEPS.includes(screen) && (
+        {isOptionStep(screen) && (
           <OptionStep
-            step={screen as OptionStep}
+            step={screen}
             answers={answers}
             onSelect={selectOption}
             onPrev={prevStep}

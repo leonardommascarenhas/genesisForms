@@ -25,10 +25,23 @@ interface UseQuizFlowReturn {
 const INITIAL_ANSWERS: Answers = {
   name: "",
   phone: "",
+  debtRange: "",
   profile: "",
   goal: "",
   situation: "",
+  acceptsFee: "",
 };
+
+// ─── Qualificação ──────────────────────────────────────────────────────────────
+
+function evaluateDebt(debtRange: string): "qualified" | "disqualified" | "pending" {
+  if (debtRange === "Menos de R$5.000") return "disqualified";
+  if (debtRange === "Acima de R$5.000") return "qualified";
+  if (debtRange === "Não sei o valor exato") return "pending"; // TODO: confirmar com Henrique
+  return "pending";
+}
+
+// ─── Hook ──────────────────────────────────────────────────────────────────────
 
 export function useQuizFlow(): UseQuizFlowReturn {
   const [currentStep, setCurrentStep] = useState(0);
@@ -82,6 +95,23 @@ export function useQuizFlow(): UseQuizFlowReturn {
       const updated = { ...answers, [key]: value };
       setAnswers(updated);
 
+      // ── Avaliação imediata no passo da dívida (passo 3) ──
+      if (key === "debtRange") {
+        const debtResult = evaluateDebt(value);
+        if (debtResult === "disqualified") {
+          setTransitioning(true);
+          setTimeout(() => {
+            setResult("disqualified");
+            setTransitioning(false);
+          }, 400);
+          return;
+        }
+        // "qualified" ou "pending": continua o quiz normalmente
+        goToStep(currentStep + 1);
+        return;
+      }
+
+      // ── Último passo: finaliza como qualified ──
       if (currentStep === STEPS_MAP.length - 1) {
         setTransitioning(true);
         setTimeout(() => {
