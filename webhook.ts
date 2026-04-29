@@ -28,8 +28,8 @@ export async function sendToWebhook(
       nome: answers.name,
       whatsapp: normalizePhone(answers.phone),
       perfil: answers.profile,
-      objetivo: answers.goal,
-      situacao: answers.situation,
+      // objetivo: answers.goal,
+      // situacao: answers.situation,
       timestamp: new Date().toISOString(),
     }),
   });

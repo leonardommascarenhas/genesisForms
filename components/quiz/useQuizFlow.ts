@@ -28,8 +28,8 @@ const INITIAL_ANSWERS: Answers = {
   phone: "",
   debtRange: "",
   profile: "",
-  goal: "",
-  situation: "",
+  // goal: "",
+  // situation: "",
   acceptsFee: "",
 };
 

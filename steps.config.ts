@@ -40,22 +40,22 @@ export const STEPS_CONFIG = [
     answerKey: "profile",
     options: ["Empresário", "Autônomo", "CLT"],
   },
-  {
-    id: "quiz-step-5",
-    type: "option",
-    question: "O que você busca:",
-    answerKey: "goal",
-    options: ["Voltar a ter crédito", "Conseguir financiamento", "Regularizar CPF/CNPJ"],
-  },
-  {
-    id: "quiz-step-6",
-    type: "option",
-    question: "Qual sua situação hoje:",
-    answerKey: "situation",
-    options: [
-      "Tenho restrições e posso negociar",
-      "Tenho restrições, mas estou sem caixa",
-      "Não sei ao certo",
-    ],
-  },
+  //   {
+  //     id: "quiz-step-5",
+  //     type: "option",
+  //     question: "O que você busca:",
+  //     answerKey: "goal",
+  //     options: ["Voltar a ter crédito", "Conseguir financiamento", "Regularizar CPF/CNPJ"],
+  //   },
+  //   {
+  //     id: "quiz-step-6",
+  //     type: "option",
+  //     question: "Qual sua situação hoje:",
+  //     answerKey: "situation",
+  //     options: [
+  //       "Tenho restrições e posso negociar",
+  //       "Tenho restrições, mas estou sem caixa",
+  //       "Não sei ao certo",
+  //     ],
+  //   },
 ] as const satisfies StepConfig[];

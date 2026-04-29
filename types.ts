@@ -16,8 +16,8 @@ export interface Answers {
   phone: string;
   debtRange: string;
   profile: string;
-  goal: string;
-  situation: string;
+  // goal: string;
+  // situation: string;
   acceptsFee: string;
 }
 
